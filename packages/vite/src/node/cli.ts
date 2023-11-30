@@ -31,7 +31,7 @@ interface GlobalCLIOptions {
   force?: boolean
 }
 
-let profileSession = global.__vite_profile_session
+let profileSession = global.__vite_profile_session //
 let profileCount = 0
 
 export const stopProfiler = (

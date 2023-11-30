@@ -956,6 +956,7 @@ export async function loadConfigFromFile(
     // implicit config file loaded from inline root (if present)
     // otherwise from cwd
     for (const filename of DEFAULT_CONFIG_FILES) {
+      // 获取项目配置文件路径
       const filePath = path.resolve(configRoot, filename)
       if (!fs.existsSync(filePath)) continue
 
@@ -969,10 +970,10 @@ export async function loadConfigFromFile(
     return null
   }
 
-  const isESM = isFilePathESM(resolvedPath)
+  const isESM = isFilePathESM(resolvedPath) // 判断是否为esm格式的代码
 
   try {
-    const bundled = await bundleConfigFile(resolvedPath, isESM)
+    const bundled = await bundleConfigFile(resolvedPath, isESM) // 使用esbuild编译项目配置文件(vite.config.js)
     const userConfig = await loadConfigFromBundledFile(
       resolvedPath,
       bundled.code,
